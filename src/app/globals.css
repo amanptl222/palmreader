@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #f8f6f2;
+  --accent-green: #2d5a4a;
+  --accent-gold: #a68b5b;
+  --accent-brown: #8b7355;
+  --text-primary: #2c2c2c;
+  --text-muted: #5a5a5a;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--text-primary);
+}
+
+/* Subtle transitions only */
+a, button {
+  transition: color 0.2s ease, background-color 0.2s ease, opacity 0.2s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
