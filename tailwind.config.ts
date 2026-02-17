@@ -9,12 +9,13 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: '#f8f6f2',
-        'accent-green': '#2d5a4a',
-        'accent-gold': '#a68b5b',
-        'accent-brown': '#8b7355',
-        'text-primary': '#2c2c2c',
-        'text-muted': '#5a5a5a',
+        background: '#faf6ed',
+        'palm-cream': '#f5f0e1',
+        'accent-amber': '#c9a227',
+        'accent-gold': '#b8860b',
+        'accent-brown': '#6b5344',
+        'text-primary': '#2c2416',
+        'text-muted': '#5c5244',
       },
       fontFamily: {
         sans: ['system-ui', 'Segoe UI', 'Roboto', 'sans-serif'],

@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: site.metaTitle,
   description: site.metaDescription,
   viewport: { width: 'device-width', initialScale: 1 },
+  icons: { icon: '/logo.png', apple: '/logo.png' },
   openGraph: {
     title: site.metaTitle,
     description: site.metaDescription,

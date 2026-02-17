@@ -48,7 +48,15 @@ export default function HomePage() {
     <main className="min-h-screen">
       {/* 1. Hero */}
       <header className="px-4 py-12 sm:py-16 md:py-20 max-w-3xl mx-auto text-center">
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-serif font-semibold text-accent-green mb-3">
+        <div className="flex justify-center mb-6">
+          <img
+            src="/logo.png"
+            alt=""
+            className="h-24 w-24 sm:h-28 sm:w-28 md:h-32 md:w-32 object-contain rounded-[25%]"
+            role="presentation"
+          />
+        </div>
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-serif font-semibold text-accent-amber mb-3">
           {hero.title}
         </h1>
         <p className="text-lg sm:text-xl text-accent-brown font-medium mb-4">
@@ -59,7 +67,7 @@ export default function HomePage() {
         </p>
         <WhatsAppLink
           number={contact.whatsappNumber}
-          className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-accent-green text-white font-medium hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-accent-green focus:ring-offset-2"
+          className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-accent-gold text-white font-medium hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-accent-amber focus:ring-offset-2"
         >
           <IconHand aria-hidden />
           {hero.ctaText} (WhatsApp)
@@ -69,11 +77,11 @@ export default function HomePage() {
       {/* 2. About */}
       <section
         id="about"
-        className="px-4 py-12 sm:py-16 bg-white/50 border-y border-accent-brown/10"
+        className="px-4 py-12 sm:py-16 bg-palm-cream/80 border-y border-accent-amber/20"
         aria-labelledby="about-heading"
       >
         <div className="max-w-2xl mx-auto">
-          <h2 id="about-heading" className="text-xl sm:text-2xl font-serif font-semibold text-accent-green mb-6">
+          <h2 id="about-heading" className="text-xl sm:text-2xl font-serif font-semibold text-accent-amber mb-6">
             {about.heading}
           </h2>
           <div className="space-y-4 text-text-muted leading-relaxed">
@@ -91,7 +99,7 @@ export default function HomePage() {
         aria-labelledby="benefits-heading"
       >
         <div className="max-w-2xl mx-auto">
-          <h2 id="benefits-heading" className="text-xl sm:text-2xl font-serif font-semibold text-accent-green mb-8">
+          <h2 id="benefits-heading" className="text-xl sm:text-2xl font-serif font-semibold text-accent-amber mb-8">
             {palmistryBenefits.heading}
           </h2>
           <ul className="grid sm:grid-cols-2 gap-3 mb-8" role="list">
@@ -111,11 +119,11 @@ export default function HomePage() {
       {/* 4. Our Professional Approach */}
       <section
         id="approach"
-        className="px-4 py-12 sm:py-16 bg-white/50 border-y border-accent-brown/10"
+        className="px-4 py-12 sm:py-16 bg-palm-cream/80 border-y border-accent-amber/20"
         aria-labelledby="approach-heading"
       >
         <div className="max-w-2xl mx-auto">
-          <h2 id="approach-heading" className="text-xl sm:text-2xl font-serif font-semibold text-accent-green mb-8">
+          <h2 id="approach-heading" className="text-xl sm:text-2xl font-serif font-semibold text-accent-amber mb-8">
             {approach.heading}
           </h2>
           <ul className="space-y-4" role="list">
@@ -138,19 +146,19 @@ export default function HomePage() {
         aria-labelledby="services-heading"
       >
         <div className="max-w-4xl mx-auto">
-          <h2 id="services-heading" className="text-xl sm:text-2xl font-serif font-semibold text-accent-green mb-8 text-center">
+          <h2 id="services-heading" className="text-xl sm:text-2xl font-serif font-semibold text-accent-amber mb-8 text-center">
             {services.heading}
           </h2>
           <div className="grid sm:grid-cols-2 gap-6">
             {services.cards.map((card, i) => (
               <article
                 key={i}
-                className="p-6 rounded-lg border border-accent-brown/20 bg-white/70 transition-colors hover:border-accent-brown/30"
+                className="p-6 rounded-lg border border-accent-amber/30 bg-palm-cream/60 transition-colors hover:border-accent-gold/50"
               >
                 <div className="flex items-start gap-3">
                   <IconCheck />
                   <div>
-                    <h3 className="font-semibold text-accent-green mb-1">
+                    <h3 className="font-semibold text-accent-amber mb-1">
                       {card.title}
                     </h3>
                     <p className="text-text-muted text-sm leading-relaxed">
@@ -167,11 +175,11 @@ export default function HomePage() {
       {/* 6. Why Choose Us */}
       <section
         id="why-choose-us"
-        className="px-4 py-12 sm:py-16 bg-white/50 border-y border-accent-brown/10"
+        className="px-4 py-12 sm:py-16 bg-palm-cream/80 border-y border-accent-amber/20"
         aria-labelledby="why-heading"
       >
         <div className="max-w-2xl mx-auto">
-          <h2 id="why-heading" className="text-xl sm:text-2xl font-serif font-semibold text-accent-green mb-8">
+          <h2 id="why-heading" className="text-xl sm:text-2xl font-serif font-semibold text-accent-amber mb-8">
             {whyChooseUs.heading}
           </h2>
           <ul className="space-y-3" role="list">
@@ -192,7 +200,7 @@ export default function HomePage() {
         aria-labelledby="contact-heading"
       >
         <div className="max-w-2xl mx-auto text-center">
-          <h2 id="contact-heading" className="text-xl sm:text-2xl font-serif font-semibold text-accent-green mb-4">
+          <h2 id="contact-heading" className="text-xl sm:text-2xl font-serif font-semibold text-accent-amber mb-4">
             {contact.heading}
           </h2>
           <p className="text-text-muted mb-6">
@@ -200,7 +208,7 @@ export default function HomePage() {
           </p>
           <WhatsAppLink
             number={contact.whatsappNumber}
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-accent-green text-white font-medium hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-accent-green focus:ring-offset-2"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-accent-gold text-white font-medium hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-accent-amber focus:ring-offset-2"
           >
             {contact.ctaText}
           </WhatsAppLink>
@@ -208,7 +216,7 @@ export default function HomePage() {
       </section>
 
       {/* 8. Footer */}
-      <footer className="px-4 py-8 border-t border-accent-brown/10 text-center">
+      <footer className="px-4 py-8 border-t border-accent-amber/20 text-center">
         <p className="text-text-muted text-sm max-w-md mx-auto">
           {site.footerLine}
         </p>
