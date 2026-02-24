@@ -41,7 +41,6 @@ export const palmistryBenefits = {
     'Timing for important life decisions',
     'Habit correction & mindset clarity',
   ],
-  note: 'Palmistry shows tendencies and possibilities, not fixed destiny.',
 } as const;
 
 export const approach = {
@@ -86,6 +85,10 @@ export const whyChooseUs = {
     'Focus on self-growth and mental peace',
     'Combination of Science + Spirituality (S = S)',
   ],
+} as const;
+
+export const feedback = {
+  heading: 'Feedback',
 } as const;
 
 export const contact = {

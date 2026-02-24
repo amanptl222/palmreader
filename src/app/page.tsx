@@ -5,9 +5,11 @@ import {
   approach,
   services,
   whyChooseUs,
+  feedback,
   contact,
   site,
 } from '@/config/content';
+import { feedbackImages } from '@/assets/images/feedback';
 import {
   IconHand,
   IconLeaf,
@@ -16,6 +18,7 @@ import {
   IconCheck,
   ApproachIcon,
 } from '@/components/icons';
+import { FeedbackSlider } from '@/components/FeedbackSlider';
 
 const WHATSAPP_BASE = 'https://wa.me/91';
 
@@ -110,9 +113,9 @@ export default function HomePage() {
               </li>
             ))}
           </ul>
-          <p className="text-accent-brown font-medium italic border-l-4 border-accent-gold pl-4 py-2">
+          {/* <p className="text-accent-brown font-medium italic border-l-4 border-accent-gold pl-4 py-2">
             &ldquo;{palmistryBenefits.note}&rdquo;
-          </p>
+          </p> */}
         </div>
       </section>
 
@@ -193,7 +196,21 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 7. Contact */}
+      {/* 7. Feedback */}
+      <section
+        id="feedback"
+        className="px-4 py-12 sm:py-16 bg-palm-cream/80 border-y border-accent-amber/20"
+        aria-labelledby="feedback-heading"
+      >
+        <div className="max-w-4xl mx-auto">
+          <h2 id="feedback-heading" className="text-xl sm:text-2xl font-serif font-semibold text-accent-amber mb-8 text-center">
+            {feedback.heading}
+          </h2>
+          <FeedbackSlider images={feedbackImages} />
+        </div>
+      </section>
+
+      {/* 8. Contact */}
       <section
         id="contact"
         className="px-4 py-12 sm:py-16"
@@ -215,7 +232,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 8. Footer */}
+      {/* 9. Footer */}
       <footer className="px-4 py-8 border-t border-accent-amber/20 text-center">
         <p className="text-text-muted text-sm max-w-md mx-auto">
           {site.footerLine}
