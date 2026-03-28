@@ -8,7 +8,7 @@ export const en: Messages = {
   },
   hero: {
     title: 'Shree Shyam Hast Rekha Gyan',
-    subtitle: 'Palmistry that guides your mind, not controls your future.',
+    subtitle: 'भाग्यं हस्ते, भविष्यं चिन्तने, सिद्धिः कर्मणा। \n Fate is in the hand, future in thoughts, success in actions.',
     intro:
       'Palmistry is a systematic study of hand structure, lines, mounts, and patterns that reflect a person’s nature, decision-making style, emotional strength, and life tendencies.',
     cta: 'Book Palmistry Session',

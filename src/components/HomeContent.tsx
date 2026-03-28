@@ -57,7 +57,7 @@ export function HomeContent() {
             <img
               src="/logo.png"
               alt=""
-              className="h-24 w-24 sm:h-28 sm:w-28 md:h-32 md:w-32 object-contain rounded-[25%] ring-2 ring-white/25 shadow-lg bg-white/5"
+              className="h-50 w-50 sm:h-50 sm:w-50 md:h-48 md:w-48 object-contain rounded-[25%] ring-2 ring-white/25 shadow-lg bg-white/5"
               role="presentation"
             />
           </div>
@@ -65,11 +65,16 @@ export function HomeContent() {
             {t.hero.title}
           </h1>
           <p className="text-lg sm:text-xl text-brand-apricot/95 font-medium mb-4">
-            {t.hero.subtitle}
+            {t.hero.subtitle.split('\n').map((line, i) => (
+              <span key={i}>
+                {line}
+                <br />
+              </span>
+            ))}
           </p>
-          <p className="text-white/88 text-base sm:text-lg leading-relaxed mb-8 max-w-2xl mx-auto">
+          {/* <p className="text-white/88 text-base sm:text-lg leading-relaxed mb-8 max-w-2xl mx-auto">
             {t.hero.intro}
-          </p>
+          </p> */}
           <WhatsAppLink
             ariaLabel={`${t.hero.cta} — ${t.hero.whatsappSuffix}`}
             className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-cta-gradient text-white font-semibold shadow-cta-glow hover:brightness-110 active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-accent-gold-bright focus:ring-offset-2 focus:ring-offset-brand-hero"
