@@ -3,13 +3,12 @@
 @tailwind utilities;
 
 :root {
-  --background: #faf6ed;
-  --palm-cream: #f5f0e1;
-  --accent-amber: #c9a227;
-  --accent-gold: #b8860b;
-  --accent-brown: #6b5344;
-  --text-primary: #2c2416;
-  --text-muted: #5c5244;
+  --background: #fff9f0;
+  --brand-forest: #14532d;
+  --brand-hero: #0f2919;
+  --text-primary: #0f2419;
+  --text-muted: #4a6658;
+  --accent-gold: #b45309;
 }
 
 html {
@@ -21,12 +20,24 @@ body {
   color: var(--text-primary);
 }
 
-/* Subtle transitions only */
-a, button {
-  transition: color 0.2s ease, background-color 0.2s ease, opacity 0.2s ease;
+a,
+button {
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    opacity 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }

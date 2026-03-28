@@ -1,15 +1,19 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import './globals.css';
-import { site } from '@/config/content';
+import { en } from '@/locales/en';
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+};
 
 export const metadata: Metadata = {
-  title: site.metaTitle,
-  description: site.metaDescription,
-  viewport: { width: 'device-width', initialScale: 1 },
+  title: en.meta.title,
+  description: en.meta.description,
   icons: { icon: '/logo.png', apple: '/logo.png' },
   openGraph: {
-    title: site.metaTitle,
-    description: site.metaDescription,
+    title: en.meta.title,
+    description: en.meta.description,
   },
 };
 

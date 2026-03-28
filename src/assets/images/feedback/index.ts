@@ -19,7 +19,13 @@ import img16 from './WhatsApp Image 2026-01-26 at 16.34.56 (1).jpeg';
 import img17 from './WhatsApp Image 2026-01-26 at 16.34.56.jpeg';
 import img18 from './WhatsApp Image 2026-01-26 at 16.34.57.jpeg';
 
-const feedbackImages: StaticImageData[] = [
+/** Additional WhatsApp screenshots (served from /public/feedback). */
+const extraPngPaths: string[] = Array.from(
+  { length: 20 },
+  (_, i) => `/feedback/extra-${String(i + 1).padStart(2, '0')}.png`
+);
+
+const jpegImports: StaticImageData[] = [
   img1,
   img2,
   img3,
@@ -40,4 +46,11 @@ const feedbackImages: StaticImageData[] = [
   img18,
 ];
 
+/** All feedback images: bundled JPEGs first, then PNGs from public (lazy-loaded in slider). */
+const feedbackImages: (StaticImageData | string)[] = [
+  ...jpegImports,
+  ...extraPngPaths,
+];
+
+export type { StaticImageData };
 export { feedbackImages };

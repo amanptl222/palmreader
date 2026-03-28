@@ -1,12 +1,22 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import Image from 'next/image';
+import NextImage from 'next/image';
 import type { StaticImageData } from 'next/image';
 
 const AUTOPLAY_MS = 5000;
 
-export function FeedbackSlider({ images }: { images: StaticImageData[] }) {
+export type FeedbackImageSource = StaticImageData | string;
+
+function resolveSrc(img: FeedbackImageSource): string {
+  return typeof img === 'string' ? img : img.src;
+}
+
+function resolveBlurDataURL(img: FeedbackImageSource): string | undefined {
+  return typeof img === 'string' ? undefined : img.blurDataURL;
+}
+
+export function FeedbackSlider({ images }: { images: FeedbackImageSource[] }) {
   const [current, setCurrent] = useState(0);
 
   const goTo = useCallback(
@@ -23,11 +33,30 @@ export function FeedbackSlider({ images }: { images: StaticImageData[] }) {
     return () => clearInterval(t);
   }, [images.length, current, goTo]);
 
+  /** Prefetch next slide in background so manual advance / autoplay feels instant. */
+  useEffect(() => {
+    if (images.length < 2) return;
+    const nextIdx = (current + 1) % images.length;
+    const src = resolveSrc(images[nextIdx]);
+    const img = new window.Image();
+    img.decoding = 'async';
+    img.src = src;
+  }, [current, images]);
+
+  const active = images[current];
+
   if (images.length === 0) {
     return (
-      <div className="rounded-xl border border-accent-amber/20 bg-white/30 py-16 text-center">
+      <div className="rounded-xl border border-brand-forest/15 bg-brand-peach/40 py-16 text-center">
         <p className="text-text-muted">
-          Add feedback images to <code className="text-sm bg-accent-amber/10 px-1 rounded">src/assets/images/feedback/</code> and list them in the index to show them here.
+          Add feedback images to{' '}
+          <code className="text-sm bg-white/80 px-1.5 py-0.5 rounded border border-brand-forest/15">
+            src/assets/images/feedback/
+          </code>{' '}
+          and{' '}
+          <code className="text-sm bg-white/80 px-1.5 py-0.5 rounded border border-brand-forest/15">
+            public/feedback/
+          </code>
         </p>
       </div>
     );
@@ -35,25 +64,23 @@ export function FeedbackSlider({ images }: { images: StaticImageData[] }) {
 
   return (
     <div className="relative">
-      <div className="overflow-hidden rounded-xl border border-accent-amber/20 bg-white/30">
-        <div
-          className="flex transition-transform duration-300 ease-out"
-          style={{ transform: `translateX(-${current * 100}%)` }}
-        >
-          {images.map((img, i) => (
-            <div key={i} className="relative aspect-[4/3] w-full flex-shrink-0">
-              <Image
-                src={img}
-                alt={`Feedback ${i + 1}`}
-                fill
-                className="object-contain"
-                sizes="(max-width: 768px) 100vw, 896px"
-                priority={i === 0}
-                loading={i === 0 ? undefined : 'lazy'}
-                decoding="async"
-              />
-            </div>
-          ))}
+      <div className="overflow-hidden rounded-xl border border-brand-forest/10 bg-white">
+        <div className="relative aspect-[4/3] w-full">
+          {active && (
+            <NextImage
+              key={current}
+              src={active}
+              alt={`Client feedback ${current + 1} of ${images.length}`}
+              fill
+              className="object-contain transition-opacity duration-300"
+              sizes="(max-width: 768px) 100vw, 896px"
+              priority={current === 0}
+              loading={current === 0 ? 'eager' : 'lazy'}
+              decoding="async"
+              placeholder={activeBlur(active) ? 'blur' : 'empty'}
+              blurDataURL={resolveBlurDataURL(active)}
+            />
+          )}
         </div>
       </div>
 
@@ -62,7 +89,7 @@ export function FeedbackSlider({ images }: { images: StaticImageData[] }) {
           <button
             type="button"
             onClick={() => goTo(current - 1)}
-            className="absolute left-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white/90 shadow border border-accent-amber/20 flex items-center justify-center text-accent-amber hover:bg-white focus:outline-none focus:ring-2 focus:ring-accent-amber"
+            className="absolute left-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white shadow-md border border-brand-forest/20 flex items-center justify-center text-brand-forest hover:bg-brand-peach/50 focus:outline-none focus:ring-2 focus:ring-accent-gold-bright"
             aria-label="Previous feedback"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
@@ -72,14 +99,14 @@ export function FeedbackSlider({ images }: { images: StaticImageData[] }) {
           <button
             type="button"
             onClick={() => goTo(current + 1)}
-            className="absolute right-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white/90 shadow border border-accent-amber/20 flex items-center justify-center text-accent-amber hover:bg-white focus:outline-none focus:ring-2 focus:ring-accent-amber"
+            className="absolute right-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white shadow-md border border-brand-forest/20 flex items-center justify-center text-brand-forest hover:bg-brand-peach/50 focus:outline-none focus:ring-2 focus:ring-accent-gold-bright"
             aria-label="Next feedback"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </button>
-          <div className="flex justify-center gap-2 mt-4" role="tablist" aria-label="Feedback slides">
+          <div className="flex justify-center gap-2 mt-4 flex-wrap" role="tablist" aria-label="Feedback slides">
             {images.map((_, i) => (
               <button
                 key={i}
@@ -88,8 +115,10 @@ export function FeedbackSlider({ images }: { images: StaticImageData[] }) {
                 role="tab"
                 aria-selected={i === current}
                 aria-label={`Go to feedback ${i + 1}`}
-                className={`w-2.5 h-2.5 rounded-full transition-colors ${
-                  i === current ? 'bg-accent-amber scale-110' : 'bg-accent-amber/30 hover:bg-accent-amber/50'
+                className={`w-2.5 h-2.5 rounded-full transition-colors shrink-0 ${
+                  i === current
+                    ? 'bg-brand-forest scale-110'
+                    : 'bg-brand-forest/25 hover:bg-brand-forest/45'
                 }`}
               />
             ))}
@@ -98,4 +127,8 @@ export function FeedbackSlider({ images }: { images: StaticImageData[] }) {
       )}
     </div>
   );
+}
+
+function activeBlur(active: FeedbackImageSource): boolean {
+  return typeof active !== 'string' && Boolean(active.blurDataURL);
 }
