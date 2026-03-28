@@ -3,9 +3,51 @@
 import type { ReactNode } from 'react';
 import { useLocale } from '@/contexts/LocaleContext';
 import { IconCheck } from '@/components/icons';
-import type { SessionSection } from '@/locales/types';
+import type { IntroSegment, RichBulletLine, SessionSection } from '@/locales/types';
 
-function BulletList({ items }: { items: string[] }) {
+function RichSegments({ segments }: { segments: IntroSegment[] }) {
+  return (
+    <>
+      {segments.map((seg, i) => {
+        if (seg.kind === 'text') {
+          return <span key={i}>{seg.value}</span>;
+        }
+        if (seg.kind === 'bold') {
+          return (
+            <strong
+              key={i}
+              className={`font-semibold text-brand-forest ${
+                seg.highlight
+                  ? 'bg-brand-peach/80 rounded-md px-1.5 py-0.5 ring-1 ring-accent-gold-bright/30'
+                  : ''
+              }`}
+            >
+              {seg.value}
+            </strong>
+          );
+        }
+        return (
+          <strong
+            key={i}
+            className="font-semibold text-brand-forest underline decoration-2 underline-offset-[3px] decoration-brand-forest/80"
+          >
+            {seg.value}
+          </strong>
+        );
+      })}
+    </>
+  );
+}
+
+function IntroParagraph({ segments }: { segments: IntroSegment[] }) {
+  return (
+    <p className="text-sm sm:text-base text-text-muted leading-relaxed">
+      <RichSegments segments={segments} />
+    </p>
+  );
+}
+
+function BulletList({ items }: { items: RichBulletLine[] }) {
   return (
     <ul className="space-y-2.5" role="list">
       {items.map((item, i) => (
@@ -13,7 +55,13 @@ function BulletList({ items }: { items: string[] }) {
           <span className="mt-0.5 shrink-0">
             <IconCheck />
           </span>
-          <span>{item}</span>
+          <span>
+            {typeof item === 'string' ? (
+              item
+            ) : (
+              <RichSegments segments={item} />
+            )}
+          </span>
         </li>
       ))}
     </ul>
@@ -76,10 +124,11 @@ export function SessionSections() {
           >
             {s.title}
           </h2>
-          <div className="space-y-4 text-sm sm:text-base text-text-muted leading-relaxed">
-            {s.intro.map((p, i) => (
-              <p key={i}>{p}</p>
-            ))}
+          <div className="space-y-4">
+            <p className="text-sm sm:text-base text-text-muted leading-relaxed">
+              {s.intro[0]}
+            </p>
+            <IntroParagraph segments={s.intro[1]} />
           </div>
         </div>
 

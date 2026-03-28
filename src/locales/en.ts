@@ -18,7 +18,36 @@ export const en: Messages = {
     title: 'Our Palmistry Session',
     intro: [
       'Our Palmistry Session is a unique journey from Science to Spirituality — where practical palm analysis meets spiritual wisdom.',
-      'This session is about accurate prediction and complete life guidance. It provides clarity in finance, career, health, relationships, and life direction, while also helping you build a positive mindset and emotional strength in one complete session.',
+      [
+        {
+          kind: 'text',
+          value:
+            'This session is about accurate prediction and complete life guidance. It provides ',
+        },
+        {
+          kind: 'bold',
+          value:
+            'clarity in finance, career, health, relationships, and life direction',
+        },
+        {
+          kind: 'text',
+          value:
+            ', while also helping you through ',
+        },
+        {
+          kind: 'bold',
+          value:
+            'aura reading process, healing guidance, Nadi insight methods, and other practical scientific methods',
+        },
+        { kind: 'text', value: ' to build ' },
+        {
+          kind: 'bold',
+          value: 'a positive mindset and emotional strength',
+        },
+        { kind: 'text', value: ' in ' },
+        { kind: 'boldUnderline', value: 'one complete session' },
+        { kind: 'text', value: '.' },
+      ],
     ],
     sessionDetails: {
       heading: '🔮 Session Details',
@@ -27,7 +56,23 @@ export const en: Messages = {
         'Women & students – ₹351/-',
         'Others – ₹501/-',
         'It covers all parts of your life like health, career, marriage, relationship, children, money and finance with spirituality to maintain material and spiritual life.',
-        '10–15 minutes free guided meditation',
+        'Aura reading is included alongside palm analysis to support your overall guidance.',
+        [
+          {
+            kind: 'bold',
+            value:
+              'Healing guidance, Nadi insight methods, and other practical scientific methods.',
+            highlight: true,
+          },
+        ],
+        [
+          {
+            kind: 'bold',
+            value: '10–15 minutes free guided meditation session',
+            highlight: true,
+          },
+          { kind: 'text', value: ' — included at no extra cost.' },
+        ],
         'Personalized life direction notes and easy basic remedies',
         'With 100% client satisfaction',
       ],
