@@ -55,8 +55,33 @@ export const en: Messages = {
       bullets: [
         'Women & students – ₹351/-',
         'Others – ₹501/-',
-        'It covers all parts of your life like health, career, marriage, relationship, children, money and finance with spirituality to maintain material and spiritual life.',
-        'Aura reading is included alongside palm analysis to support your overall guidance.',
+        [
+          { kind: 'text', value: 'It covers all parts of your life like ' },
+          {
+            kind: 'bold',
+            value:
+              'health, career, marriage, relationship, children, money and finance',
+            highlight: true,
+          },
+          {
+            kind: 'text',
+            value: ' with spirituality to maintain ',
+          },
+          {
+            kind: 'bold',
+            value: 'material and spiritual life',
+            highlight: true,
+          },
+          { kind: 'text', value: '.' },
+        ],
+        [
+          {
+            kind: 'bold',
+            value:
+              'Aura reading is included alongside palm analysis to support your overall guidance.',
+            highlight: true,
+          },
+        ],
         [
           {
             kind: 'bold',
